@@ -36,3 +36,25 @@
   
   村/社区 670479
   
+# 表结构
+
+```
+
+CREATE TABLE `lkk_cnarea` (
+  `id` mediumint(7) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` mediumint(7) unsigned NOT NULL DEFAULT '0' COMMENT '父级ID',
+  `level` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '层级',
+  `zip_code` char(6) NOT NULL DEFAULT '' COMMENT '邮政编码',
+  `city_code` char(4) NOT NULL DEFAULT '' COMMENT '区号',
+  `area_code` varchar(20) NOT NULL DEFAULT '' COMMENT '行政代码',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '名称',
+  `short_name` varchar(50) NOT NULL DEFAULT '' COMMENT '简称',
+  `merger_name` varchar(255) NOT NULL DEFAULT '' COMMENT '组合名',
+  `pinyin` varchar(100) NOT NULL DEFAULT '' COMMENT '拼音',
+  `lng` decimal(12,8) NOT NULL DEFAULT '0.00000000' COMMENT '经度',
+  `lat` decimal(12,8) NOT NULL DEFAULT '0.00000000' COMMENT '维度',
+  PRIMARY KEY (`id`),
+  KEY `idx_lev` (`level`,`parent_id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=714473 DEFAULT CHARSET=utf8 COMMENT='中国行政地区表';
+
+```
