@@ -36,7 +36,15 @@
   
   村/社区 670479
   
-#### 表结构
+### cnarea20160320-2.sql
+
+  只包含3级行政区, 使用load 方式导入数据库。
+
+  导入语句：
+
+    LOAD DATA LOCAL INFILE 'cnarea20160320-2.sql' INTO TABLE dx_cnareas FIELDS TERMINATED BY ','  ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+# 表结构
 
 ```
 
