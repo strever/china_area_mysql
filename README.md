@@ -1,4 +1,5 @@
 # china_area_mysql
+
 ## 中国5级行政区域mysql库
 
   爬取国家统计局官网的行政区域数据,包括省市县镇村5个层级;
@@ -29,23 +30,24 @@
 
 ### 表结构
 
-```
+```sql
 
-CREATE TABLE `cnarea` (
-  `id` mediumint(7) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` mediumint(7) unsigned NOT NULL DEFAULT '0' COMMENT '父级ID',
+CREATE TABLE `china_area` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '父级ID',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '层级',
   `area_code` bigint(12) unsigned NOT NULL DEFAULT '0' COMMENT '行政代码',
-  `zip_code` mediumint(6) unsigned zerofill NOT NULL DEFAULT '000000' COMMENT '邮政编码',
-  `city_code` char(6) NOT NULL DEFAULT '' COMMENT '区号',
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '名称',
-  `short_name` varchar(50) NOT NULL DEFAULT '' COMMENT '简称',
-  `merger_name` varchar(50) NOT NULL DEFAULT '' COMMENT '组合名',
-  `pinyin` varchar(30) NOT NULL DEFAULT '' COMMENT '拼音',
-  `lng` decimal(10,6) NOT NULL DEFAULT '0.000000' COMMENT '经度',
-  `lat` decimal(10,6) NOT NULL DEFAULT '0.000000' COMMENT '维度',
+  `zip_code` varchar(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '邮政编码',
+  `city_code` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '区号',
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '名称',
+  `short_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '简称',
+  `merger_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '组合名',
+  `pinyin` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '拼音',
+  `longitude` decimal(10,6) NOT NULL DEFAULT '0.000000' COMMENT '经度',
+  `latitude` decimal(10,6) NOT NULL DEFAULT '0.000000' COMMENT '维度',
   PRIMARY KEY (`id`),
   KEY `idx_lev` (`level`,`parent_id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='中国行政地区表';
+) ENGINE=InnoDB AUTO_INCREMENT=3289 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='中国行政地区表';
+
 
 ```
